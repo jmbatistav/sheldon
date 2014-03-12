@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resource/icons/appicon.png</file>
+        <file>resource/icons/exit.png</file>
+        <file>resource/icons/info.png</file>
+        <file>resource/icons/help-contents.png</file>
+        <file>resource/icons/help-hint.png</file>
+        <file>resource/icons/galternatives.png</file>
+    </qresource>
+</RCC>
