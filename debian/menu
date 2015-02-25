@@ -1,0 +1,2 @@
+?package(sheldon):needs="X11" section="Applications/Network/FileTransfer"\
+  title="Sheldon" command="/usr/bin/sheldon" icon="sheldon.png"

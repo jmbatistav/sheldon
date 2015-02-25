@@ -1,0 +1,15 @@
+Source: sheldon
+Section: Sheldon
+Priority: optional
+Maintainer: Jose Manuel Batista Viltre <jmbatista@uci.cu>
+Build-Depends: debhelper (>= 9), make, g++, build-essential, cdbs, libqtcore4 | libqt5widgets5, libqtgui4 | libqt5widgets5
+Standards-Version: 3.9.5
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/sheldon.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/sheldon.git;a=summary
+
+Package: sheldon
+Architecture: i386 amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}, apt-mirror
+Description: Herramienta para la descarga de repositorios.
+ Descarga los repositorios de las distribuciones basadas en Debian GNU/Linux utilizando la herramienta apt-mirror.

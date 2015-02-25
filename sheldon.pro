@@ -6,6 +6,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = sheldon
 TEMPLATE = app
+DESTDIR = bin
+OBJECTS_DIR = debug
+MOC_DIR = debug
 SOURCES += main.cpp \
     mainwindow.cpp \
     dialogs/configdialog.cpp \
@@ -19,3 +22,6 @@ HEADERS += mainwindow.h \
     src/aptmirror.h
 FORMS += mainwindow.ui
 RESOURCES += sheldon.qrc
+
+target.path = /usr/bin
+INSTALLS += target
