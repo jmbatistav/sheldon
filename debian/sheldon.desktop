@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Sheldon
+Comment=Download mirrors
+Exec=/usr/bin/sheldon
+Terminal=false
+Type=Application
+Icon=sheldon.png
+Categories=Network;FileTransfer;
+Version=0.3
