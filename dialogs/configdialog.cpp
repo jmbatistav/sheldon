@@ -33,6 +33,26 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
         this->setFixedSize(251, 160);
 }
 
+QString ConfigDialog::getNthread()
+{
+    return nthre;
+}
+
+QString ConfigDialog::getLimitRate()
+{
+    return limitr;
+}
+
+void ConfigDialog::setNthread(QString nt)
+{
+    spinBox->setValue(nt.toInt());
+}
+
+void ConfigDialog::setLimitRate(QString lr)
+{
+    spinBox_2->setValue(lr.toInt());
+}
+
 void ConfigDialog::aceptarOnclic()
 {
     nthre = spinBox->text();

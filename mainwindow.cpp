@@ -83,6 +83,39 @@ void MainWindow::openmirriorlistfromfile()
     }
 }
 
+bool MainWindow::openmirriorlistSettings(QString path)
+{
+    QFile file(path + "/mirror.list");
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        return false;
+    }
+
+    QTextStream in(&file);
+    QRegExp rent("set\\s+nthreads\\s+(\\d+)");
+    QRegExp relr("set\\s+limit_rate\\s+(\\d+)[bkmgt]");
+    QRegExp redeb("^deb");
+    int index = 0;
+
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        if((index = rent.indexIn(line)) != -1)
+        {
+            nthread = rent.cap(1);
+        }
+        else if((index = relr.indexIn(line)) != -1)
+        {
+            limitrate = relr.cap(1);
+        }
+        else if((index = redeb.indexIn(line)) != -1)
+        {
+            ui->mirrortodownload->append(line);
+        }
+
+    }
+    return true;
+}
+
 void MainWindow::readFromStdout()\
 {
     /*
@@ -124,7 +157,10 @@ void MainWindow::on_btnBrowse_clicked()
             ui->label_2->show();
             ui->mirrortodownload->setEnabled(true);
             ui->btnApply->setEnabled(true);
-            openmirriorlistfromfile();
+            if(!openmirriorlistSettings(setpath))
+            {
+                openmirriorlistfromfile();
+            }
         }
     }
 }
@@ -243,7 +279,8 @@ void MainWindow::onMirrorChange()
 
 void MainWindow::on_actionConfigurar_triggered()
 {
-
+    confd->setNthread(nthread);
+    confd->setLimitRate(limitrate);
     confd->exec();
     nthread = confd->getNthread();
     limitrate = confd->getLimitRate();

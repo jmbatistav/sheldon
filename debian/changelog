@@ -1,3 +1,9 @@
+sheldon (0.4) UNRELEASED; urgency=medium
+
+  * Cuando se define la ruta para descargar revisa si existe mirror.list y carga las configuraciones desde ese fichero
+
+ -- Jose Manuel Batista Viltre <jmbatista@gandalfx>  Mon, 21 Sep 2015 12:42:22 -0400
+
 sheldon (0.3) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>

@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QDir>
 #include <QTextStream>
+#include <QRegExp>
 
 #include "dialogs/configdialog.h"
 #include "dialogs/infodialog.h"
@@ -34,6 +35,7 @@ private:
     Ui::MainWindow *ui;
     AptMirror *aptmirror;
     void openmirriorlistfromfile();
+    bool openmirriorlistSettings(QString path);
     QProcess terminal;
     QProcess killall;
     QString fileName;

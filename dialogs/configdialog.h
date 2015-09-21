@@ -12,8 +12,10 @@ class ConfigDialog : public QDialog
     Q_OBJECT
 public:
     ConfigDialog(QWidget *parent = 0);
-    QString getNthread(){return nthre;};
-    QString getLimitRate(){return limitr;};
+    QString getNthread();
+    QString getLimitRate();
+    void setNthread(QString nt);
+    void setLimitRate(QString lr);
 
 signals:
 
