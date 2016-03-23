@@ -11,16 +11,17 @@ OBJECTS_DIR = debug
 MOC_DIR = debug
 SOURCES += main.cpp \
     mainwindow.cpp \
-    dialogs/configdialog.cpp \
     dialogs/infodialog.cpp \
     dialogs/helpdialog.cpp \
-    src/aptmirror.cpp
+    src/aptmirror.cpp \
+    settings.cpp
 HEADERS += mainwindow.h \
-    dialogs/configdialog.h \
     dialogs/infodialog.h \
     dialogs/helpdialog.h \
-    src/aptmirror.h
-FORMS += mainwindow.ui
+    src/aptmirror.h \
+    settings.h
+FORMS += mainwindow.ui \
+    settings.ui
 RESOURCES += sheldon.qrc
 
 target.path = /usr/bin

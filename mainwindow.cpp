@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,14 +8,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     aptmirror = new AptMirror(this);
-    fileName = "";
-    ruta = "";
+    fileName = "mirror.list";
+    ruta = "/tmp";
     nthread = "20";
     limitrate = "100";
+    use_proxy = "off";
+    http_proxy = "127.0.0.1:3128";
+    proxy_user = "user";
+    proxy_password = "password";
     mirrorchanged = false;
     tabdisable = false;
-    confd = new ConfigDialog(this);
-    confd->setWindowTitle(QString::fromUtf8("Sheldon::Configuración"));
+    settingsd = new Settings(this);
+    settingsd->setWindowTitle(QString::fromUtf8("Sheldon::Configuración"));
     infd = new InfoDialog(this);
     infd->setWindowTitle(QString::fromUtf8("Sheldon::Acerca de..."));
     helpd = new HelpDialog(this);
@@ -39,7 +43,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui;
     if(terminal.state() == QProcess::Running)
     {
         terminal.kill();
@@ -48,7 +51,7 @@ MainWindow::~MainWindow()
         parameters<<"-r"<<"wget";
         killall.start(pkillall,parameters);
     }
-
+    delete ui;
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -93,6 +96,10 @@ bool MainWindow::openmirriorlistSettings(QString path)
     QTextStream in(&file);
     QRegExp rent("set\\s+nthreads\\s+(\\d+)");
     QRegExp relr("set\\s+limit_rate\\s+(\\d+)[bkmgt]");
+    QRegExp reup("set\\s+use_proxy\\s+(on|off)");
+    QRegExp rehp("set\\s+http_proxy\\s+(\\S+)");
+    QRegExp repu("set\\s+proxy_user\\s+(\\S+)");
+    QRegExp repp("set\\s+proxy_password\\s+(\\S+)");
     QRegExp redeb("^deb");
     int index = 0;
 
@@ -106,6 +113,22 @@ bool MainWindow::openmirriorlistSettings(QString path)
         else if((index = relr.indexIn(line)) != -1)
         {
             limitrate = relr.cap(1);
+        }
+        else if((index = reup.indexIn(line)) != -1)
+        {
+            use_proxy = reup.cap(1);
+        }
+        else if((index = rehp.indexIn(line)) != -1)
+        {
+            http_proxy = rehp.cap(1);
+        }
+        else if((index = repu.indexIn(line)) != -1)
+        {
+            proxy_user = repu.cap(1);
+        }
+        else if((index = repp.indexIn(line)) != -1)
+        {
+            proxy_password = repp.cap(1);
         }
         else if((index = redeb.indexIn(line)) != -1)
         {
@@ -173,6 +196,10 @@ void MainWindow::on_btnApply_clicked()
     aptmirror->setRuta(ruta);
     aptmirror->setLimitrate(limitrate);
     aptmirror->setNthread(nthread);
+    aptmirror->setUse_proxy(use_proxy);
+    aptmirror->setHttp_proxy(http_proxy);
+    aptmirror->setProxy_user(proxy_user);
+    aptmirror->setProxy_password(proxy_password);
     aptmirror->setRepos(ui->mirrortodownload->document()->toPlainText());
     if(QMessageBox::information(this,"Sheldon::INFO",
                                 "Se descargaran las siguientes URI:\n"+aptmirror->getRepos()+
@@ -279,11 +306,24 @@ void MainWindow::onMirrorChange()
 
 void MainWindow::on_actionConfigurar_triggered()
 {
-    confd->setNthread(nthread);
-    confd->setLimitRate(limitrate);
-    confd->exec();
-    nthread = confd->getNthread();
-    limitrate = confd->getLimitRate();
+    settingsd->setNthread(nthread);
+    settingsd->setLimitRate(limitrate);
+    settingsd->setIsProxy((use_proxy == "off") ? false : true);
+    settingsd->setHostname(http_proxy.split(":").at(0));
+    settingsd->setPort(http_proxy.split(":").at(1));
+    settingsd->setUser(proxy_user);
+    settingsd->setPass(proxy_password);
+
+    if(settingsd->exec() == QDialog::Accepted)
+    {
+        nthread = settingsd->getNthread();
+        limitrate = settingsd->getLimitRate();
+        use_proxy = (settingsd->getIsProxy()) ? "on" : "off";
+        http_proxy = settingsd->getHostname() + ":" + settingsd->getPort();
+        proxy_user = settingsd->getUser();
+        proxy_password = settingsd->getPass();
+
+    }
 }
 
 void MainWindow::on_actionSalir_triggered()

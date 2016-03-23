@@ -1,11 +1,11 @@
-# Sheldon 0.3
+# Sheldon 0.5
 
 El código está liberado bajo la GNU General Public License.
 __________
 
 # Summary
 
-Esta es la versión 0.3 de Sheldon, un herramienta para la descarga los repositorios de las distribuciones basadas en Debian GNU/Linux utilizando apt-mirror.
+Esta es la versión 0.5 de Sheldon, un herramienta para la descarga los repositorios de las distribuciones basadas en Debian GNU/Linux utilizando apt-mirror.
 
 # Developed By
 
@@ -26,7 +26,7 @@ libqtcore4, libqtgui4 | libqt5core5a, libqt5gui5, libqt5widgets5
 ### Debianize
 
 ``` bash
-qmake
+qmake CONFIG+=release
 dpkg-buildpackage -rfakeroot -d -us -uc
 ```
 

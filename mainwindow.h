@@ -13,10 +13,10 @@
 #include <QTextStream>
 #include <QRegExp>
 
-#include "dialogs/configdialog.h"
 #include "dialogs/infodialog.h"
 #include "dialogs/helpdialog.h"
 #include "src/aptmirror.h"
+#include "settings.h"
 
 namespace Ui {
     class MainWindow;
@@ -42,9 +42,13 @@ private:
     QString ruta;
     QString nthread;
     QString limitrate;
+    QString use_proxy;
+    QString http_proxy;
+    QString proxy_user;
+    QString proxy_password;
     bool mirrorchanged;
     bool tabdisable;
-    ConfigDialog *confd;
+    Settings *settingsd;
     InfoDialog *infd;
     HelpDialog *helpd;
 

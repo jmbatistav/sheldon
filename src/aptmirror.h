@@ -19,6 +19,11 @@ public:
     void setRepos(QString repos);
     QString getRepos();
     QString getFileName();
+    void setUse_proxy(const QString &value);
+    void setHttp_proxy(const QString &value);
+    void setProxy_user(const QString &value);
+    void setProxy_password(const QString &value);
+
 private:
     QString fileName;
     QString base_path;
@@ -33,6 +38,14 @@ private:
     QString limitrate;
     QString repos;
     QString documento;
+    QString use_proxy;
+    QString http_proxy;
+    QString proxy_user;
+    QString proxy_password;
+    QString setuse_proxy;
+    QString sethttp_proxy;
+    QString setproxy_user;
+    QString setproxy_password;
 
 
 };

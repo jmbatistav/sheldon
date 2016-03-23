@@ -1,3 +1,9 @@
+sheldon (0.5) stable; urgency=medium
+
+  * Adicionando soporte para proxy. Solo funciona con apt-mirror version 0.5 o superior
+
+ -- Jose Manuel Batista Viltre <jmbatista@gandalfx>  Mon, 23 Mar 2016 09:04:22 -0400
+ 
 sheldon (0.4) UNRELEASED; urgency=medium
 
   * Cuando se define la ruta para descargar revisa si existe mirror.list y carga las configuraciones desde ese fichero
