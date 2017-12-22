@@ -19,7 +19,7 @@ InfoDialog::InfoDialog(QWidget *parent) :
             "* Compatible con Qt5.\n"
             "\n"
             "Desarrollado por:\n"
-            "Jos\303\251 Manuel Batista Viltre <jmbatista@uci.cu>"));
+            "Jos\303\251 Manuel Batista Viltre <batista87@gmail.com>"));
             connect(pushButton,SIGNAL(clicked()),this,SLOT(aceptarOnclic()));
 
         this->setFixedSize(560, 398);

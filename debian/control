@@ -1,7 +1,7 @@
 Source: sheldon
 Section: Sheldon
 Priority: optional
-Maintainer: Jose Manuel Batista Viltre <jmbatista@uci.cu>
+Maintainer: Jose Manuel Batista Viltre <batista87@gmail.com>
 Build-Depends: debhelper (>= 9), make, g++, build-essential, cdbs, libqtcore4 | libqt5widgets5, libqtgui4 | libqt5widgets5
 Standards-Version: 3.9.5
 Homepage: <insert the upstream URL, if relevant>

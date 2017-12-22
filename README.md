@@ -9,7 +9,7 @@ Esta es la versión 0.5 de Sheldon, un herramienta para la descarga los reposito
 
 # Developed By
 
-* __José Manuel Batista Viltre, UCI__ - <jmbatista@uci.cu>
+* __José Manuel Batista Viltre, UCI__ - <batista87@gmail.com>
     * Desarrollador principal (hasta el momento el único)
 
 # How to debianize Sheldon
